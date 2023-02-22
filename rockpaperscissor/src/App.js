@@ -26,17 +26,32 @@ const choice = {
 
 function App() {
   const [userSelect, setUserSelect] = useState(null);
+  const [computerSelect, setComputerSelect] = useState(null);
 
   const play = (userChoice) => {
     setUserSelect(choice[userChoice]);
-    console.log("선택됨", userChoice);
+    let computerChoice = randomChoice();
+    setComputerSelect(computerChoice);
+  };
+
+  const randomChoice = () => {
+    // 객체의 키값만 뽑아서 어레이로 만들어줌
+    let itemArray = Object.keys(choice);
+    console.log(itemArray);
+    // Math.random() : 0~1 사이 랜덤한 값을 반환
+    // itemArray.length 을 곱하고 Math.floor()을 해서 0,1,2 셋 중 하나가 나오도록 만들어줌
+    let randomItem = Math.floor(Math.random() * itemArray.length);
+    let final = itemArray[randomItem];
+    return choice[final];
+    console.log(final);
+    console.log("random value", randomItem);
   };
 
   return (
     <div>
       <div className="main">
         <Box title="You" item={userSelect} />
-        {/* <Box title="Computer" /> */}
+        <Box title="Computer" item={computerSelect} />
       </div>
       <div className="main">
         {/* 함수를 콜백형태로 전달해주는 것이 중요 */}
