@@ -1,4 +1,4 @@
-import logo from "./logo.svg";
+import { useState } from "react";
 import "./App.css";
 import Box from "./component/Box";
 
@@ -25,15 +25,18 @@ const choice = {
 };
 
 function App() {
+  const [userSelect, setUserSelect] = useState(null);
+
   const play = (userChoice) => {
+    setUserSelect(choice[userChoice]);
     console.log("선택됨", userChoice);
   };
 
   return (
     <div>
       <div className="main">
-        <Box title="You" />
-        <Box title="Computer" />
+        <Box title="You" item={userSelect} />
+        {/* <Box title="Computer" /> */}
       </div>
       <div className="main">
         {/* 함수를 콜백형태로 전달해주는 것이 중요 */}
