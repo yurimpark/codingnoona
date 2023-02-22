@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function App() {
   let counter = 0;
   const [counter2, setCounter2] = useState(0);
+  const [value, setValue] = useState(0);
 
   const increase = () => {
     // 변수는 값을 바꾸면 바로 적용되지만(동기적)
@@ -18,6 +19,7 @@ function App() {
 
     counter += 1;
     setCounter2(counter2 + 1);
+    setValue(value + 2);
     console.log("counter는", counter, "counter2 state는", counter2);
     // 유저가 버튼을 클릭한다.
     // counter+1 해서 1이 됨
@@ -29,8 +31,28 @@ function App() {
     // let counter = 0을 거치면서 counter값은 다시 0으로 초기화
     // state값은 업데이트 되면서, 업데이트 된 state값이 보인다.
   };
+
+  useEffect(() => {
+    // 배열에 아무것도 없으면 componentDidMount() 와 같은 기능
+    // api 호출!
+    console.log("useEffect1 퐈이야~");
+  }, []);
+
+  useEffect(() => {
+    // 배열안에 state가 있으면 componentDidMount() + componentDidUpdate() 와 같은 기능
+    // [] 어레이 안의 값을 주시한다!
+    // 어레이 안의 하나라도 변하면 실행
+    console.log("useEffect2 퐈이야~", counter2, value);
+  }, [counter2]);
+
+  useEffect(() => {
+    // 다른내용 써주고 싶으면 독립시키면 됨
+    console.log("다른내용 하고싶어요", value);
+  }, [value]);
+
   return (
     <div>
+      {console.log("render")}
       <div>{counter}</div>
       <div>state:{counter2}</div>
       <button onClick={increase}>클릭!</button>
