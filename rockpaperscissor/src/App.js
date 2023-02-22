@@ -9,29 +9,30 @@ import Box from "./component/Box";
 // 5. 3번 4번의 아이템을 가지고 누가 이겼는지 승패를 나눈다.
 // 6. 박스 테두리가 결과에 따라 색이 변한다. 지면 빨간색, 이기면 초록색, 비기면 검정색이 보인다.
 
-const choice = {
-  rock: {
-    name: "Rock",
-    img: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FpSJwo%2FbtqXJV1lACE%2Fnx5XrxkCLWXh9UsnoS8vbK%2Fimg.png",
-  },
-  scissors: {
-    name: "Scissors",
-    img: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FHfURw%2FbtqXKvOTNWK%2FgWTwPXEg9QzSV0ilOuwuak%2Fimg.png",
-  },
-  paper: {
-    name: "Paper",
-    img: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbmjB2s%2FbtqXHhp6kpG%2FTH14W4U612SxKo9uuR2sB0%2Fimg.png",
-  },
-};
-
 function App() {
+  const choice = {
+    rock: {
+      name: "Rock",
+      img: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FpSJwo%2FbtqXJV1lACE%2Fnx5XrxkCLWXh9UsnoS8vbK%2Fimg.png",
+    },
+    scissors: {
+      name: "Scissors",
+      img: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FHfURw%2FbtqXKvOTNWK%2FgWTwPXEg9QzSV0ilOuwuak%2Fimg.png",
+    },
+    paper: {
+      name: "Paper",
+      img: "https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FbmjB2s%2FbtqXHhp6kpG%2FTH14W4U612SxKo9uuR2sB0%2Fimg.png",
+    },
+  };
   const [userSelect, setUserSelect] = useState(null);
   const [computerSelect, setComputerSelect] = useState(null);
+  const [result, setResult] = useState("");
 
   const play = (userChoice) => {
     setUserSelect(choice[userChoice]);
     let computerChoice = randomChoice();
     setComputerSelect(computerChoice);
+    setResult(judgement(choice[userChoice], computerChoice));
   };
 
   const randomChoice = () => {
@@ -47,11 +48,30 @@ function App() {
     console.log("random value", randomItem);
   };
 
+  const judgement = (user, computer) => {
+    console.log("user", user, "computer", computer);
+    // user == computer //! tie
+    // user scissors computer rock //! user 패 computer 승
+    // user rock computer paper //! user 패 computer 승
+    // user paper computer scissors //! user 패 computer 승
+    // user scissors computer paper //! user 승 computer 패
+    // user rock computer scissors //! user 승 computer 패
+    // user paper computer rock //! user 승 computer 패
+    if (user.name == computer.name) {
+      return "tie";
+    } else if (user.name == "Rock")
+      return computer.name == "Scissors" ? "win" : "lose";
+    else if (user.name == "Scissors")
+      return computer.name == "Paper" ? "win" : "lose";
+    else if (user.name == "Paper")
+      return computer.name == "Rock" ? "win" : "lose";
+  };
+
   return (
     <div>
       <div className="main">
-        <Box title="You" item={userSelect} />
-        <Box title="Computer" item={computerSelect} />
+        <Box title="You" item={userSelect} result={result} />
+        <Box title="Computer" item={computerSelect} result={result} />
       </div>
       <div className="main">
         {/* 함수를 콜백형태로 전달해주는 것이 중요 */}
