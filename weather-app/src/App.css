@@ -18,3 +18,16 @@ body {
   border-radius: 30px;
   background: azure;
 }
+
+.today {
+  text-align: center;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  position: relative;
+  width: 100px;
+  height: 65px;
+  margin: 15px 5px;
+}
