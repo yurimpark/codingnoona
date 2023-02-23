@@ -1,21 +1,27 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 
-function WeatherButton({ cities, setCity }) {
+function WeatherButton({ cities, handleCityChange }) {
   console.log(cities);
   return (
     <div>
-      <Button variant="warning">Current Location</Button>{" "}
+      <Button
+        className="btn"
+        variant="info"
+        // 현재 위치 눌렀을 때
+        onClick={() => handleCityChange("current")}
+      >
+        Current Location
+      </Button>
       {/* map함수를 이용하여 버튼을 여러개 만들 필요 없이 한번에 생성 */}
-      {cities.map((item) => (
+      {cities.map((city) => (
         <Button
-          variant="info"
-          onClick={() => {
-            // 클릭한 도시로 바꿔줌
-            setCity(item);
-          }}
+          className="btn"
+          variant="warning"
+          // 해당 도시 눌렀을 때
+          onClick={() => handleCityChange(city)}
         >
-          {item}
+          {city}
         </Button>
       ))}
     </div>
