@@ -31,3 +31,9 @@ body {
   height: 65px;
   margin: 15px 5px;
 }
+
+.city {
+  font-size: 25px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}

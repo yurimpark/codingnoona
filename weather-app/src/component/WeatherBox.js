@@ -5,7 +5,7 @@ const WeatherBox = ({ weather }) => {
   return (
     <div className="weather-box">
       {/* 옵셔널 체이닝: weather && 와 같은 역할! */}
-      <div>{weather?.name}</div>
+      <div className="city">{weather?.name}</div>
       <h2>
         {Math.round(weather?.main.temp)}°C 🌡{" "}
         {Math.round((weather?.main.temp + 40) * 1.8 - 40)}°F
