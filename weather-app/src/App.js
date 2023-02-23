@@ -13,6 +13,9 @@ import WeatherButton from "./component/WeatherButton";
 
 function App() {
   const [weather, setWeather] = useState(null);
+  // 도시를 배열에 담아서
+  const cities = ["Sydney", "London", "Wellington", "Toronto"];
+
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       let lat = position.coords.latitude;
@@ -36,7 +39,8 @@ function App() {
     <div>
       <div className="container">
         <WeatherBox weather={weather} />
-        <WeatherButton />
+        {/* props로 넘겨줌 */}
+        <WeatherButton cities={cities} />
       </div>
     </div>
   );
