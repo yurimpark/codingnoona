@@ -6,8 +6,10 @@ const WeatherBox = ({ weather }) => {
     <div className="weather-box">
       {/* 옵셔널 체이닝: weather && 와 같은 역할! */}
       <div>{weather?.name}</div>
-      <h2>30도 / 230화씨</h2>
-      <h3>맑은 하늘</h3>
+      <h2>
+        {weather?.main.temp}°C | {(weather?.main.temp + 40) * 1.8 - 40}°F
+      </h2>
+      <h3>{weather?.weather[0].description}</h3>
     </div>
   );
 };
