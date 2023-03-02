@@ -3,8 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import ProductAll from "./pages/ProductAll";
 import Login from "./pages/Login";
 import ProductDetail from "./pages/ProductDetail";
+import Navbar from "./components/Navbar";
 
 // 1. 전체 상품 페이지, 로그인, 상품 상세페이지
+// 1-1. 네비게이션바
 // todo 2. 전체 상품페이지에서는 전체 상품을 볼 수 있다.
 // todo 3. 로그인 버튼을 누르면 로그인 페이지가 나온다.
 // todo 4. 상품 디테일을 눌렀으나, 로그인이 되지 않은 경우에는 로그인페이지가 먼저 나온다.
@@ -17,6 +19,7 @@ import ProductDetail from "./pages/ProductDetail";
 function App() {
   return (
     <div>
+      <Navbar />
       <Routes>
         <Route path="/" element={<ProductAll />} />
         <Route path="/login" element={<Login />} />
