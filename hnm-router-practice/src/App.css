@@ -32,3 +32,8 @@
 .search-area input {
   border: 0;
 }
+
+.login-btn {
+  border: 0;
+  background-color: transparent;
+}
