@@ -37,3 +37,14 @@
   border: 0;
   background-color: transparent;
 }
+
+.product-img {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.product-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
