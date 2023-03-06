@@ -1,5 +1,7 @@
 let initialState = {
   count: 0,
+  id: "",
+  pwd: "",
 };
 
 function reducer(state = initialState, action) {
@@ -15,6 +17,9 @@ function reducer(state = initialState, action) {
       ...state,
       count: state.count - action.payload.num,
     };
+  }
+  if (action.type === "LOGIN") {
+    return { ...state, id: action.payload.id, pwd: action.payload.pwd };
   }
   // store는 return이 무조건 있어야 한다
   // 그래서 reducer에서 무조건 기본 리턴 필요

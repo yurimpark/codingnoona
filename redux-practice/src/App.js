@@ -15,11 +15,23 @@ function App() {
   const decrease = () => {
     dispatch({ type: "DECREMENT", payload: { num: 2 } });
   };
+
+  const login = () => {
+    dispatch({ type: "LOGIN", payload: { id: "yurim", pwd: "0112" } });
+  };
+
+  let id = useSelector(state => state.id);
+  let pwd = useSelector(state => state.pwd);
+
   return (
     <div>
       <h1>{count}</h1>
+      <h2>
+        {id} {pwd}
+      </h2>
       <button onClick={increase}>증가!</button>
       <button onClick={decrease}>감소!</button>
+      <button onClick={login}>로그인</button>
       <Box />
     </div>
   );
